@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { CountryInfo } from './CountryInfo'
+import { Exchange } from './Exchange'
 
-export const SearchBox = () => {
+export const CountrySearch = () => {
   const [country, setCountry] = useState('')
   const [results, setResults] = useState([])
 
@@ -14,11 +15,6 @@ export const SearchBox = () => {
       .then((json) => setResults(json))
   }
 
-  const handleInput = (event) => {
-    event.preventDefault()
-    setCountry(event.target.value)
-  }
-
   return (
     <div>
       <h5>Please enter a country:</h5>
@@ -26,7 +22,7 @@ export const SearchBox = () => {
         onSubmit={Search}>
         <input
           type="text"
-          onChange={handleInput}
+          onChange={(event) => setCountry(event.target.value)}
           value={country} />
         <button
           type="submit"
@@ -36,6 +32,7 @@ export const SearchBox = () => {
         </button>
       </form>
       <CountryInfo countryInfo={results} />
+      {results && <Exchange currencyArray={results[0]} />}
     </div>
   )
 }

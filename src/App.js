@@ -1,11 +1,11 @@
 import React from 'react'
-import { SearchBox } from './components/SearchBox'
+import { CountrySearch } from './components/CountrySearch'
 
 export const App = () => {
 
   return (
     <div>
-      <SearchBox />
+      <CountrySearch />
     </div>
   )
 }
