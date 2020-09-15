@@ -14,15 +14,15 @@ export const Exchange = ({ currencyArray }) => {
     fetch(EXCHANGE_API, { method: 'GET' })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.rates)
-        setRate(json.rates)
+        console.log(Object.values(json.rates))
+        setRate(Object.values(json.rates))
         console.log('This is the rate:', rate)
       })
   }
 
   return (
     <div>
-      {rate && <h3>{rate.value}</h3>}
+      {rate && <h3>{rate.map((item) => (item))}</h3>}
       <form
         onSubmit={HandleExchange}>
         <input
