@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components/macro'
 
 export const Exchange = ({ currencyArray }) => {
   const [input, setInput] = useState('')
@@ -7,7 +8,6 @@ export const Exchange = ({ currencyArray }) => {
   const HandleExchange = (event) => {
     event.preventDefault()
     const currency = currencyArray.currencies[0].code
-    console.log('This is the props:', currency)
 
     const EXCHANGE_API = `https://api.exchangeratesapi.io/latest?base=SEK&symbols=${currency}`
 
@@ -17,15 +17,23 @@ export const Exchange = ({ currencyArray }) => {
         console.log(Object.values(json.rates))
         setRate(Object.values(json.rates))
         console.log('This is the rate:', rate)
+        console.log('Hey input!!', input)
       })
+
+    const CountryRate = (rate.map((item) => (item)) * input)
+    console.log(CountryRate)
   }
 
   return (
     <div>
-      {rate && <h3>{rate.map((item) => (item))}</h3>}
+      <FlexDiv>
+        <Heading>Convert SEK into local currency:</Heading>
+        {rate.length > 0 && input && <h3>{`${input} SEK = ${(rate.map((item) => (item)) * input).toFixed(2)}`}</h3>}
+      </FlexDiv>
+
       <form
         onSubmit={HandleExchange}>
-        <input
+        <ExchangeInput
           // name="currency"
           // id="currency"
           type="number"
@@ -33,11 +41,49 @@ export const Exchange = ({ currencyArray }) => {
           max="1000000"
           value={input}
           onChange={(event) => setInput(event.target.value)} />
-        <button
+        <ExchangeButton
           type="submit">
           Exchange
-        </button>
+        </ExchangeButton>
       </form>
     </div>
   )
 }
+
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Heading = styled.h4`
+  margin-bottom: 0px;
+  font-weight: 400;
+`
+
+const ExchangeInput = styled.input`
+  border: none;
+  border-radius: 2px;
+  width: 150px;
+  padding: 5px;
+  color: #0B5699;
+`
+
+const ExchangeButton = styled.button`
+border: none;
+padding: 5px;
+margin: 10px;
+border-radius: 2px;
+background: #ffa79e;
+color: white;
+font-family: 'Rubik', sans-serif;
+font-weight: 400;
+
+&:hover {
+  background: #F87060;
+  cursor: pointer;
+}
+
+&:disabled {
+  background-color: gray;
+}
+`

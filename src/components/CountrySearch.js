@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components/macro'
 import { CountryInfo } from './CountryInfo'
 import { Exchange } from './Exchange'
 
@@ -17,22 +18,55 @@ export const CountrySearch = () => {
 
   return (
     <div>
-      <h5>Please enter a country:</h5>
+      <Heading>Please enter a country:</Heading>
       <form
         onSubmit={Search}>
-        <input
+        <SearchInput
           type="text"
           onChange={(event) => setCountry(event.target.value)}
           value={country} />
-        <button
+        <SearchButton
           type="submit"
           disabled={!country}
           value="Search">
           Search
-        </button>
+        </SearchButton>
       </form>
-      <CountryInfo countryInfo={results} />
-      {results && <Exchange currencyArray={results[0]} />}
+      {results.length > 0 && <CountryInfo countryInfo={results} />}
+      {results.length > 0 && <Exchange currencyArray={results[0]} />}
     </div>
   )
 }
+
+const Heading = styled.h5`
+  margin: 0; 
+  font-weight: 400;
+`
+
+const SearchInput = styled.input`
+  border: none;
+  border-radius: 2px;
+  width: 150px;
+  padding: 5px;
+  color: #0B5699;
+`
+
+const SearchButton = styled.button`
+  border: none;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 2px;
+  background: #ffa79e;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+
+  &:hover {
+    background: #F87060;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: gray;
+  }
+`

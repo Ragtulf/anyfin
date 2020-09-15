@@ -1,11 +1,18 @@
 import React from 'react'
+import styled from 'styled-components/macro'
 import { CountrySearch } from './components/CountrySearch'
 
 export const App = () => {
 
   return (
-    <div>
+    <FlexDiv>
       <CountrySearch />
-    </div>
+    </FlexDiv>
   )
 }
+
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
