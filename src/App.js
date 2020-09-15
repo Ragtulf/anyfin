@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import { CountrySearch } from './components/CountrySearch'
 
 export const App = () => {
-
   return (
     <FlexDiv>
       <CountrySearch />

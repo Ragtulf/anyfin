@@ -4,10 +4,10 @@ import styled from 'styled-components/macro'
 export const Exchange = ({ currencyArray }) => {
   const [input, setInput] = useState('')
   const [rate, setRate] = useState([])
+  const currency = currencyArray.currencies[0].code
 
   const HandleExchange = (event) => {
     event.preventDefault()
-    const currency = currencyArray.currencies[0].code
 
     const EXCHANGE_API = `https://api.exchangeratesapi.io/latest?base=SEK&symbols=${currency}`
 
@@ -22,7 +22,7 @@ export const Exchange = ({ currencyArray }) => {
     <div>
       <FlexDiv>
         <Heading>Convert SEK into local currency:</Heading>
-        {rate.length > 0 && input && <h3>{`${input} SEK = ${(rate.map((item) => (item)) * input).toFixed(2)}`}</h3>}
+        {rate.length > 0 && input && <h3>{`${input} SEK = ${(rate.map((item) => (item)) * input).toFixed(2)} ${currency}`}</h3>}
       </FlexDiv>
 
       <form
