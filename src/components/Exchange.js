@@ -14,14 +14,8 @@ export const Exchange = ({ currencyArray }) => {
     fetch(EXCHANGE_API, { method: 'GET' })
       .then((res) => res.json())
       .then((json) => {
-        console.log(Object.values(json.rates))
         setRate(Object.values(json.rates))
-        console.log('This is the rate:', rate)
-        console.log('Hey input!!', input)
       })
-
-    const CountryRate = (rate.map((item) => (item)) * input)
-    console.log(CountryRate)
   }
 
   return (
@@ -34,8 +28,6 @@ export const Exchange = ({ currencyArray }) => {
       <form
         onSubmit={HandleExchange}>
         <ExchangeInput
-          // name="currency"
-          // id="currency"
           type="number"
           min="1"
           max="1000000"
