@@ -7,6 +7,7 @@ export const CountrySearch = () => {
   const [country, setCountry] = useState('')
   const [results, setResults] = useState([])
 
+// A function that fetches to an API to search for the country
   const Search = (event) => {
     event.preventDefault()
     const COUNTRY_API = `https://restcountries.eu/rest/v2/name/${country}`

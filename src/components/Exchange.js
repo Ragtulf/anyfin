@@ -6,6 +6,7 @@ export const Exchange = ({ currencyArray }) => {
   const [rate, setRate] = useState([])
   const currency = currencyArray.currencies[0].code
 
+  // A function that fetches to an API to get the exchange rate - SEK is a base currency
   const HandleExchange = (event) => {
     event.preventDefault()
 
@@ -18,11 +19,14 @@ export const Exchange = ({ currencyArray }) => {
       })
   }
 
+  // The calculation with the exchange rate
+  const result = (rate.map((item) => (item)) * input).toFixed(2)
+
   return (
     <div>
       <FlexDiv>
         <Heading>Convert SEK into local currency:</Heading>
-        {rate.length > 0 && input && <h3>{`${input} SEK = ${(rate.map((item) => (item)) * input).toFixed(2)} ${currency}`}</h3>}
+        {rate.length > 0 && input && <h3>{`${input} SEK = ${result} ${currency}`}</h3>}git
       </FlexDiv>
 
       <form

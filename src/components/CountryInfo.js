@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
+// A function that displays the information from the API call
 export const CountryInfo = ({ countryInfo }) => {
   console.log('This is countryInfo:', countryInfo)
   return (
